@@ -1,15 +1,3 @@
-# Maven build artifacts
-target/
-*.tar.gz
-*.zip
-
-# WAR files (build artifacts)
-*.war
-configs/openelis/war/
-
-# Odoo addons directory (managed by Maven dependencies)
-configs/odoo/addons/
-
 # IDE files
 .idea/
 **/.idea/
@@ -31,3 +19,9 @@ logs/
 
 # Docker volumes
 docker-volumes/
+
+# Odoo addon directories (extracted from zip)
+configs/odoo/addons/odoo_initializer/
+
+# Database data files
+configs/openelis/database/data/

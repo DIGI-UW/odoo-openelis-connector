@@ -1,80 +1,30 @@
 # Odoo OpenELIS Connector
-
-This project provides integration between Odoo and OpenELIS systems using a clean Maven-based approach for managing dependencies and configurations.
+<img width="603" height="169" alt="odooscre" src="https://github.com/user-attachments/assets/23711ce0-3a03-49e4-896c-5c1225bb99b8" />
 
 ## Overview
 
-The project uses Maven to manage the Odoo initializer addon dependency, providing a cleaner and more maintainable approach compared to manually copying files.
+This project provides integration between Odoo and OpenELIS systems with a simplified approach that includes all necessary components directly in the repository.
+
+## 🚀 One-Command Setup
+
+```bash
+git clone <repository-url> && cd odoo-openelis-connector && chmod +x setup.sh && ./setup.sh
+```
+
+That's it! The setup script will handle everything automatically.
 
 ## Architecture
 
 The project follows a modular architecture with the following components:
 
-- **Odoo Initializer Addon**: Automatically managed via Maven dependency
+- **Odoo Initializer Addon**: Included as a zip file in the repository under `configs/odoo/addons/odoo_initializer.zip`
 - **OpenELIS Configuration**: Local configuration files for OpenELIS setup
 - **Docker Compose**: Containerized deployment setup
 - **Nginx Configuration**: Reverse proxy configuration
 
-## Build Process
+## Prerequisites
 
-### Prerequisites
-
-- Java 8 or higher
-- Maven 3.6 or higher
 - Docker and Docker Compose
-
-### Building the Distribution
-
-The project uses Maven to build a distributable package:
-
-```bash
-mvn clean package
-```
-
-This will:
-1. Download the Odoo initializer addon from the Mekom Solutions repository (if available)
-2. Fall back to local files if the remote dependency is not accessible
-3. Package all configurations into a distributable archive
-
-### Build Artifacts
-
-After a successful build, you'll find the following artifacts in the `target/` directory:
-
-- `odoo-openelis-connector-1.0.0-SNAPSHOT.tar.gz` - Compressed distribution package
-- `odoo-openelis-connector-1.0.0-SNAPSHOT.zip` - ZIP distribution package
-
-## Dependency Management
-
-### Odoo Initializer Addon
-
-The Odoo initializer addon is managed as a Maven dependency:
-
-```xml
-<dependency>
-    <groupId>net.mekomsolutions.odoo</groupId>
-    <artifactId>odoo-initializer</artifactId>
-    <version>2.3.0-SNAPSHOT</version>
-    <type>zip</type>
-    <optional>true</optional>
-</dependency>
-```
-
-**Key Features:**
-- **Automatic Download**: Maven attempts to download the latest version from the Mekom Solutions repository
-- **Fallback Mechanism**: If the remote dependency is unavailable, the build falls back to local files
-- **Version Management**: Easy version updates by changing the version property in `pom.xml`
-
-### Repository Configuration
-
-The project is configured to use the Mekom Solutions Maven repository:
-
-```xml
-<repository>
-    <id>mekom-solutions</id>
-    <name>Mekom Solutions Repository</name>
-    <url>https://nexus.mekomsolutions.net/repository/maven-public</url>
-</repository>
-```
 
 ## Project Structure
 
@@ -83,65 +33,35 @@ odoo-openelis-connector/
 ├── configs/
 │   ├── nginx/           # Nginx configuration
 │   ├── odoo/            # Odoo configuration and addons
-│   │   ├── addons/      # Odoo addons (managed by Maven)
+│   │   ├── addons/      # Odoo addons (including odoo_initializer.zip)
 │   │   └── config/      # Odoo configuration files
 │   └── openelis/        # OpenELIS configuration
 ├── docker-compose.yml   # Docker Compose configuration
-├── pom.xml             # Maven project configuration
-├── assembly.xml        # Maven assembly descriptor
 └── README.md           # This file
 ```
 
-## Deployment
+## Quick Start
 
-### Quick Start (Recommended)
+### 1. Clone the Repository
 
-Use the provided deployment scripts for easy setup:
-
-#### For Development:
 ```bash
-./setup-dev.sh
+git clone <repository-url>
+cd odoo-openelis-connector
 ```
 
-#### For Production:
+### 2. Run the Setup Script
+
 ```bash
-./deploy.sh
+chmod +x setup.sh
+./setup.sh
 ```
 
-### Manual Deployment
+This script will:
+1. Check if Docker, Docker Compose, and `unzip` are available
+2. Extract the `odoo_initializer.zip` file to the addons directory
+3. Start all Docker services automatically
 
-#### Option 1: Using the Built Distribution Package
-
-1. Build the distribution:
-   ```bash
-   mvn clean package
-   ```
-
-2. Extract the distribution package:
-   ```bash
-   cd target
-   tar -xzf odoo-openelis-connector-1.0.0-SNAPSHOT.tar.gz
-   cd odoo-openelis-connector-1.0.0-SNAPSHOT
-   ```
-
-3. Start the services:
-   ```bash
-   docker-compose up -d
-   ```
-
-#### Option 2: Development Mode
-
-1. Prepare the development environment:
-   ```bash
-   ./setup-dev.sh
-   ```
-
-2. Start the services:
-   ```bash
-   docker-compose up -d
-   ```
-
-### Service Access
+### 3. Access the Services
 
 Once deployed, the services will be available at:
 
@@ -149,7 +69,23 @@ Once deployed, the services will be available at:
 - **OpenELIS**: https://localhost:8443
 - **FHIR API**: http://localhost:8081
 
-### Useful Docker Compose Commands
+## Configuration
+
+### Odoo Configuration
+
+The Odoo configuration is located in `configs/odoo/` and includes:
+- Addon configurations (including the odoo_initializer.zip file)
+- Database initialization scripts
+- Custom module configurations
+
+### OpenELIS Configuration
+
+OpenELIS configuration files are in `configs/openelis/` and include:
+- Database configuration
+- Application properties
+- Logging configuration
+
+## Useful Docker Compose Commands
 
 ```bash
 # View logs
@@ -163,67 +99,52 @@ docker-compose restart
 
 # View service status
 docker-compose ps
+
+# Rebuild and start services
+docker-compose up -d --build
 ```
-
-## Configuration
-
-### Odoo Configuration
-
-The Odoo configuration is located in `configs/odoo/` and includes:
-- Addon configurations
-- Database initialization scripts
-- Custom module configurations
-
-### OpenELIS Configuration
-
-OpenELIS configuration files are in `configs/openelis/` and include:
-- Database configuration
-- Application properties
-- Logging configuration
 
 ## Development
 
-### Adding New Dependencies
+### Adding New Odoo Addons
 
-To add new Maven dependencies:
+To add new Odoo addons:
 
-1. Add the dependency to the `dependencies` section in `pom.xml`
-2. Configure the appropriate Maven plugin to handle the dependency
-3. Update the assembly descriptor if needed
+1. Place the addon in the `configs/odoo/addons/` directory
+2. Update the Odoo configuration if needed
+3. Restart the Odoo service: `docker-compose restart odoo`
 
-### Updating Odoo Initializer Version
+### Updating the Odoo Initializer Addon
 
-To update the Odoo initializer version:
+To update the Odoo initializer addon:
 
-1. Update the `odooInitializerVersion` property in `pom.xml`
-2. Run `mvn clean package` to rebuild with the new version
-
-
+1. Replace the `configs/odoo/addons/odoo_initializer.zip` file with the new version
+2. Run the setup script: `./setup.sh` (this will restart all services)
 
 ## Troubleshooting
 
-### Network Issues with Remote Repository
+### Service Startup Issues
 
-If you encounter network issues with the Mekom Solutions repository:
+If services fail to start:
 
-1. The build will automatically fall back to local files
-2. Ensure the local `configs/odoo/addons/odoo_initializer/` directory contains the required files
-3. Check your network connectivity to `maven.mekomsolutions.com`
+1. Check the logs: `docker-compose logs <service-name>`
+2. Ensure all required ports are available
+3. Verify Docker and Docker Compose are running
 
-### Build Failures
+### Configuration Issues
 
-If the build fails:
+If you encounter configuration problems:
 
-1. Check that all required dependencies are available
-2. Verify the Maven configuration in `pom.xml`
-3. Ensure the local fallback files are present
+1. Check the configuration files in the `configs/` directory
+2. Verify file permissions and ownership
+3. Restart the affected services
 
 ## Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Test the build process
+4. Test the setup process
 5. Submit a pull request
 
 ## License

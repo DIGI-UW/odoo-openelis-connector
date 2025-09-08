@@ -206,7 +206,7 @@ secrets:
     hapi_application.yaml:
       file: ./configs/openelis/properties/hapi_application.yaml
     odoo-test-product-mapping.csv:
-      file: ./configs/openelis/properties/odoo-test-product-mapping.csv
+      file: ./configs/openelis/odoo/odoo-test-product-mapping.csv
 
 networks:
   hie:
