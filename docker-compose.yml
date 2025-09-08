@@ -149,6 +149,8 @@ services:
       - ./configs/odoo/addons/odoo_initializer.zip:/tmp/odoo_initializer.zip
     command: >
       sh -c "
+      echo 'Installing unzip...' &&
+      apt-get update && apt-get install -y unzip &&
       echo 'Extracting odoo_initializer addon...' &&
       cd /mnt/extra-addons &&
       unzip -o /tmp/odoo_initializer.zip &&
@@ -193,14 +195,10 @@ services:
       - odoo-openelis-data:/var/lib/odoo
       - ./configs/odoo/config:/etc/odoo
       - ./test_initializer_fixed.py:/tmp/test_initializer_fixed.py
-      - ./configs/odoo/addons/odoo_initializer.zip:/tmp/odoo_initializer.zip
     command: >
       sh -c "
       echo 'Waiting for Odoo to be ready...' &&
       sleep 60 &&
-      echo 'Extracting odoo_initializer addon...' &&
-      cd /mnt/extra-addons &&
-      unzip -o /tmp/odoo_initializer.zip &&
       echo 'Running initializer...' &&
       python3 /tmp/test_initializer_fixed.py &&
       echo 'Initialization completed!'
