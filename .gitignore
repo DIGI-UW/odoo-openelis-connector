@@ -20,7 +20,5 @@ logs/
 # Docker volumes
 docker-volumes/
 
-configs/odoo/addons/odoo_initializer/__pycache__/
-configs/odoo/addons/odoo_initializer/models/__pycache__/
-configs/odoo/addons/odoo_initializer/utils/__pycache__/
-configs/openelis/database/data/
+# Odoo addon directories (extracted from zip)
+configs/odoo/addons/odoo_initializer/

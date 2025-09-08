@@ -3,14 +3,13 @@
 
 ## Overview
 
-This project provides integration between Odoo and OpenELIS systems using a clean Maven-based approach for managing dependencies and configurations.
-It uses maven to manage the Odoo initializer addon dependency, providing a cleaner and more maintainable approach compared to manually copying files.
+This project provides integration between Odoo and OpenELIS systems. It uses maven to manage the Odoo initializer addon dependency, providing a cleaner and more maintainable approach compared to manually copying files.
 
 ## Architecture
 
 The project follows a modular architecture with the following components:
 
-- **Odoo Initializer Addon**: Included directly in the repository under `configs/odoo/addons/odoo_initializer/`
+- **Odoo Initializer Addon**: Included as a zip file in the repository under `configs/odoo/addons/odoo_initializer.zip`
 - **OpenELIS Configuration**: Local configuration files for OpenELIS setup
 - **Docker Compose**: Containerized deployment setup
 - **Nginx Configuration**: Reverse proxy configuration
@@ -26,7 +25,7 @@ odoo-openelis-connector/
 ├── configs/
 │   ├── nginx/           # Nginx configuration
 │   ├── odoo/            # Odoo configuration and addons
-│   │   ├── addons/      # Odoo addons (including odoo_initializer)
+│   │   ├── addons/      # Odoo addons (including odoo_initializer.zip)
 │   │   └── config/      # Odoo configuration files
 │   └── openelis/        # OpenELIS configuration
 ├── docker-compose.yml   # Docker Compose configuration
@@ -48,6 +47,11 @@ cd odoo-openelis-connector
 docker-compose up -d
 ```
 
+The Docker containers will automatically:
+1. Extract the `odoo_initializer.zip` file to the addons directory
+2. Start the Odoo services with the extracted addon
+3. Run the initialization process
+
 ### 3. Access the Services
 
 Once deployed, the services will be available at:
@@ -61,7 +65,7 @@ Once deployed, the services will be available at:
 ### Odoo Configuration
 
 The Odoo configuration is located in `configs/odoo/` and includes:
-- Addon configurations (including the odoo_initializer addon)
+- Addon configurations (including the odoo_initializer.zip file)
 - Database initialization scripts
 - Custom module configurations
 
@@ -105,8 +109,8 @@ To add new Odoo addons:
 
 To update the Odoo initializer addon:
 
-1. Replace the contents of `configs/odoo/addons/odoo_initializer/` with the new version
-2. Restart the Odoo service: `docker-compose restart odoo`
+1. Replace the `configs/odoo/addons/odoo_initializer.zip` file with the new version
+2. Restart the Odoo services: `docker-compose restart odoo.openelis.org odoo.initializer.openelis.org`
 
 ## Troubleshooting
 
