@@ -22,3 +22,6 @@ docker-volumes/
 
 # Odoo addon directories (extracted from zip)
 configs/odoo/addons/odoo_initializer/
+
+# Database data files
+configs/openelis/database/data/
