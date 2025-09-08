@@ -3,7 +3,15 @@
 
 ## Overview
 
-This project provides integration between Odoo and OpenELIS systems. It uses maven to manage the Odoo initializer addon dependency, providing a cleaner and more maintainable approach compared to manually copying files.
+This project provides integration between Odoo and OpenELIS systems with a simplified approach that includes all necessary components directly in the repository.
+
+## 🚀 One-Command Setup
+
+```bash
+git clone <repository-url> && cd odoo-openelis-connector && chmod +x setup.sh && ./setup.sh
+```
+
+That's it! The setup script will handle everything automatically.
 
 ## Architecture
 
