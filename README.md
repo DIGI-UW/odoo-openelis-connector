@@ -41,18 +41,24 @@ git clone <repository-url>
 cd odoo-openelis-connector
 ```
 
-### 2. Start the Services
+### 2. Setup the Odoo Initializer Addon
+
+```bash
+./setup.sh
+```
+
+This script will:
+1. Check if `unzip` is available on your system
+2. Extract the `odoo_initializer.zip` file to the addons directory
+3. Prepare the environment for Docker Compose
+
+### 3. Start the Services
 
 ```bash
 docker-compose up -d
 ```
 
-The Docker containers will automatically:
-1. Extract the `odoo_initializer.zip` file to the addons directory
-2. Start the Odoo services with the extracted addon
-3. Run the initialization process
-
-### 3. Access the Services
+### 4. Access the Services
 
 Once deployed, the services will be available at:
 
@@ -110,7 +116,8 @@ To add new Odoo addons:
 To update the Odoo initializer addon:
 
 1. Replace the `configs/odoo/addons/odoo_initializer.zip` file with the new version
-2. Restart the Odoo services: `docker-compose restart odoo.openelis.org odoo.initializer.openelis.org`
+2. Run the setup script: `./setup.sh`
+3. Restart the Odoo services: `docker-compose restart odoo.openelis.org odoo.initializer.openelis.org`
 
 ## Troubleshooting
 

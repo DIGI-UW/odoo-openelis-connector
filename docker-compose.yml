@@ -146,21 +146,12 @@ services:
       - ./configs/odoo/initializer_config:/mnt/odoo_config
       - odoo-openelis-data:/var/lib/odoo
       - ./configs/odoo/config:/etc/odoo
-      - ./configs/odoo/addons/odoo_initializer.zip:/tmp/odoo_initializer.zip
     command: >
-      sh -c "
-      echo 'Installing unzip...' &&
-      apt-get update && apt-get install -y unzip &&
-      echo 'Extracting odoo_initializer addon...' &&
-      cd /mnt/extra-addons &&
-      unzip -o /tmp/odoo_initializer.zip &&
-      echo 'Starting Odoo...' &&
       odoo -d postgres
       -i base,base_import,sale_management,stock,account_account,purchase,mrp,odoo_initializer,mrp_product_expiry,product_expiry,l10n_generic_coa
       --db_user=odoo
       --db_password=odoo
       --db_host=db
-      "
     networks:
       - hie
     healthcheck:
