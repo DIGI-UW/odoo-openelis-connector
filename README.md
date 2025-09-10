@@ -52,7 +52,6 @@ cd odoo-openelis-connector
 ### 2. Run the Setup Script
 
 ```bash
-chmod +x setup.sh
 ./setup.sh
 ```
 
