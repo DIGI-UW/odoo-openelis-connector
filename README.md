@@ -64,9 +64,8 @@ This script will:
 
 Once deployed, the services will be available at:
 
-- **Odoo**: http://localhost:8069
-- **OpenELIS**: https://localhost:8443
-- **FHIR API**: http://localhost:8081
+- **Odoo**: http://localhost:8069 | admin : admin
+- **OpenELIS**: https://localhost:8443 | admin : adminADMIN!
 
 ## Configuration
 
