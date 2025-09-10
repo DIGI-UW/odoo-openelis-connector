@@ -1,30 +1,26 @@
 id,name,list_price,type,product_variant_ids/categ_id/id,default_code,description,sale_ok,purchase_ok,active
-odoo_test_albumine_recherche_miction,Albumine recherche miction,76.00,service,product_category_labtests,LAB-ALBUMINE_RECHERCHE_MICTION,Albumine recherche miction - Laboratory Test,true,false,true
-odoo_test_hemoglobine,Hémoglobine,73.00,service,product_category_labtests,LAB-HEMOGLOBINE,Hémoglobine - Laboratory Test,true,false,true
-odoo_test_volume_globulaire_moyen,Volume Globulaire Moyen,69.00,service,product_category_labtests,LAB-VOLUME_GLOBULAIRE_MOYEN,Volume Globulaire Moyen - Laboratory Test,true,false,true
-odoo_test_plaquette,Plaquette,32.00,service,product_category_labtests,LAB-PLAQUETTE,Plaquette - Laboratory Test,true,false,true
-odoo_test_lymphocytes_percent,Lymphocytes (%),15.00,service,product_category_labtests,LAB-LYMPHOCYTES_PERCENT,Lymphocytes (%) - Laboratory Test,true,false,true
-odoo_test_lymphocytes_abs,Lymphocytes (Abs),32.00,service,product_category_labtests,LAB-LYMPHOCYTES_ABS,Lymphocytes (Abs) - Laboratory Test,true,false,true
-odoo_test_monocytes_abs,Monocytes (Abs),44.00,service,product_category_labtests,LAB-MONOCYTES_ABS,Monocytes (Abs) - Laboratory Test,true,false,true
-odoo_test_baso_percent,Baso %,55.00,service,product_category_labtests,LAB-BASO_PERCENT,Baso % - Laboratory Test,true,false,true
-odoo_test_casey_test,Casey Test,67.00,service,product_category_labtests,LAB-CASEY_TEST,Casey Test - Laboratory Test,true,false,true
-odoo_test_dengue_pcr_1,DENGUE PCR,29.00,service,product_category_labtests,LAB-DENGUE_PCR_1,DENGUE PCR - Laboratory Test,true,false,true
-odoo_test_dengue_pcr_2,DENGUE PCR,33.00,service,product_category_labtests,LAB-DENGUE_PCR_2,DENGUE PCR - Laboratory Test,true,false,true
-odoo_test_dengue_pcr_3,DENGUE PCR,85.00,service,product_category_labtests,LAB-DENGUE_PCR_3,DENGUE PCR - Laboratory Test,true,false,true
-odoo_test_hiv_viral_load_1,HIV VIRAL LOAD,11.00,service,product_category_labtests,LAB-HIV_VIRAL_LOAD_1,HIV VIRAL LOAD - Laboratory Test,true,false,true
-odoo_test_hiv_viral_load_2,HIV VIRAL LOAD,90.00,service,product_category_labtests,LAB-HIV_VIRAL_LOAD_2,HIV VIRAL LOAD - Laboratory Test,true,false,true
-odoo_test_hiv_viral_load_3,HIV VIRAL LOAD,97.00,service,product_category_labtests,LAB-HIV_VIRAL_LOAD_3,HIV VIRAL LOAD - Laboratory Test,true,false,true
-odoo_test_covid_19_pcr_1,COVID-19 PCR,22.00,service,product_category_labtests,LAB-COVID_19_PCR_1,COVID-19 PCR - Laboratory Test,true,false,true
-odoo_test_covid_19_pcr_2,COVID-19 PCR,44.00,service,product_category_labtests,LAB-COVID_19_PCR_2,COVID-19 PCR - Laboratory Test,true,false,true
-odoo_test_covid_19_pcr_3,COVID-19 PCR,49.00,service,product_category_labtests,LAB-COVID_19_PCR_3,COVID-19 PCR - Laboratory Test,true,false,true
-odoo_test_covid_19_antibody_igg_1,COVID-19 ANITBODY IgG,81.00,service,product_category_labtests,LAB-COVID_19_ANTIBODY_IGG_1,COVID-19 ANITBODY IgG - Laboratory Test,true,false,true
-odoo_test_covid_19_antibody_igg_2,COVID-19 ANITBODY IgG,79.00,service,product_category_labtests,LAB-COVID_19_ANTIBODY_IGG_2,COVID-19 ANITBODY IgG - Laboratory Test,true,false,true
-odoo_test_covid_19_antibody_igm_1,COVID-19 ANITBODY IgM,69.00,service,product_category_labtests,LAB-COVID_19_ANTIBODY_IGM_1,COVID-19 ANITBODY IgM - Laboratory Test,true,false,true
-odoo_test_covid_19_antibody_igm_2,COVID-19 ANITBODY IgM,25.00,service,product_category_labtests,LAB-COVID_19_ANTIBODY_IGM_2,COVID-19 ANITBODY IgM - Laboratory Test,true,false,true
-odoo_test_hepatitis_b_viral_load_1,HEPATITIS B VIRAL LOAD,75.00,service,product_category_labtests,LAB-HEPATITIS_B_VIRAL_LOAD_1,HEPATITIS B VIRAL LOAD - Laboratory Test,true,false,true
-odoo_test_hepatitis_b_viral_load_2,HEPATITIS B VIRAL LOAD,45.00,service,product_category_labtests,LAB-HEPATITIS_B_VIRAL_LOAD_2,HEPATITIS B VIRAL LOAD - Laboratory Test,true,false,true
-odoo_test_hepatitis_c_viral_load_1,HEPATITIS C VIRAL LOAD,45.00,service,product_category_labtests,LAB-HEPATITIS_C_VIRAL_LOAD_1,HEPATITIS C VIRAL LOAD - Laboratory Test,true,false,true
-odoo_test_hepatitis_c_viral_load_2,HEPATITIS C VIRAL LOAD,89.00,service,product_category_labtests,LAB-HEPATITIS_C_VIRAL_LOAD_2,HEPATITIS C VIRAL LOAD - Laboratory Test,true,false,true
-odoo_test_determine,Determine,93.00,service,product_category_labtests,LAB-DETERMINE,Determine - Laboratory Test,true,false,true
-odoo_test_amylase_updated,Amylase updated,73.00,service,product_category_labtests,LAB-AMYLASE_UPDATED,Amylase updated - Laboratory Test,true,false,true
-odoo_test_bioline_updated,Bioline updated,18.00,service,product_category_labtests,LAB-BIOLINE_UPDATED,Bioline updated - Laboratory Test,true,false,true
+1,ARV resistance,47.00,service,product_category_labtests,LAB_TEST_ARV RESISTANCE,ARV resistance - Laboratory Tests,true,false,true
+2,Basophiles (%),59.00,service,product_category_labtests,LAB_TEST_BASOPHILES (%),Basophiles (%) - Laboratory Tests,true,false,true
+3,Basophiles,61.00,service,product_category_labtests,LAB_TEST_BASOPHILES,Basophiles - Laboratory Tests,true,false,true
+4,Bioline,28.00,service,product_category_labtests,LAB_TEST_BIOLINE,Bioline - Laboratory Tests,true,false,true
+5,CD4 Absolute count (mm3),64.00,service,product_category_labtests,LAB_TEST_CD4 ABSOLUTE COUNT (MM3),CD4 Absolute count (mm3) - Laboratory Tests,true,false,true
+6,CD4 percent  (%),37.00,service,product_category_labtests,LAB_TEST_CD4 PERCENT  (%),CD4 percent  (%) - Laboratory Tests,true,false,true
+7,CMCH,55.00,service,product_category_labtests,LAB_TEST_CMCH,CMCH - Laboratory Tests,true,false,true
+8,Eosinophiles (%),21.00,service,product_category_labtests,LAB_TEST_EOSINOPHILES (%),Eosinophiles (%) - Laboratory Tests,true,false,true
+9,Eosinophiles,70.00,service,product_category_labtests,LAB_TEST_EOSINOPHILES,Eosinophiles - Laboratory Tests,true,false,true
+10,HIV rapid test HIV,49.00,service,product_category_labtests,LAB_TEST_HIV RAPID TEST HIV,HIV rapid test HIV - Laboratory Tests,true,false,true
+11,Hematocrit,32.00,service,product_category_labtests,LAB_TEST_HEMATOCRIT,Hematocrit - Laboratory Tests,true,false,true
+12,Hemoglobin,78.00,service,product_category_labtests,LAB_TEST_HEMOGLOBIN,Hemoglobin - Laboratory Tests,true,false,true
+13,Lymphocytes (%),43.00,service,product_category_labtests,LAB_TEST_LYMPHOCYTES (%),Lymphocytes (%) - Laboratory Tests,true,false,true
+14,Lymphocytes (Abs),66.00,service,product_category_labtests,LAB_TEST_LYMPHOCYTES (ABS),Lymphocytes (Abs) - Laboratory Tests,true,false,true
+15,Medium corpuscular volum,25.00,service,product_category_labtests,LAB_TEST_MEDIUM CORPUSCULAR VOLUM,Medium corpuscular volum - Laboratory Tests,true,false,true
+16,Monocytes (%),51.00,service,product_category_labtests,LAB_TEST_MONOCYTES (%),Monocytes (%) - Laboratory Tests,true,false,true
+17,Monocytes (Abs),44.00,service,product_category_labtests,LAB_TEST_MONOCYTES (ABS),Monocytes (Abs) - Laboratory Tests,true,false,true
+18,Neutrophiles (%),63.00,service,product_category_labtests,LAB_TEST_NEUTROPHILES (%),Neutrophiles (%) - Laboratory Tests,true,false,true
+19,Neutrophiles,72.00,service,product_category_labtests,LAB_TEST_NEUTROPHILES,Neutrophiles - Laboratory Tests,true,false,true
+20,Platelets,38.00,service,product_category_labtests,LAB_TEST_PLATELETS,Platelets - Laboratory Tests,true,false,true
+21,Red Blood Cells Count (RBC),41.00,service,product_category_labtests,LAB_TEST_RED BLOOD CELLS COUNT (RBC),Red Blood Cells Count (RBC) - Laboratory Tests,true,false,true
+22,TMCH,29.00,service,product_category_labtests,LAB_TEST_TMCH,TMCH - Laboratory Tests,true,false,true
+23,Viral load,57.00,service,product_category_labtests,LAB_TEST_VIRAL LOAD,Viral load - Laboratory Tests,true,false,true
+24,Vironostika,73.00,service,product_category_labtests,LAB_TEST_VIRONOSTIKA,Vironostika - Laboratory Tests,true,false,true
+25,White Blood Cells Count (WBC),36.00,service,product_category_labtests,LAB_TEST_WHITE BLOOD CELLS COUNT (WBC),White Blood Cells Count (WBC) - Laboratory Tests,true,false,true
