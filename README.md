@@ -1,150 +1,59 @@
-# Odoo OpenELIS Connector
-<img width="603" height="169" alt="odooscre" src="https://github.com/user-attachments/assets/23711ce0-3a03-49e4-896c-5c1225bb99b8" />
+# OpenELIS Global with Odoo invoicing
 
-## Overview
+OpenELIS Global 3.3.0 (the [openelis-docker](https://github.com/DIGI-UW/openelis-docker) 3.3.0 stack)
+with [Odoo](https://www.odoo.com) 17 Invoicing. Each time an order is saved in OpenELIS, OpenELIS creates
+a draft customer invoice in Odoo for the patient, with one line per billable test.
 
-This project provides integration between Odoo and OpenELIS systems with a simplified approach that includes all necessary components directly in the repository.
+Guide: [Odoo (Billing / ERP)](https://uwdigi.atlassian.net/wiki/spaces/oeg/pages/1776975920)
 
-## 🚀 One-Command Setup
-
-```bash
-git clone <repository-url> && cd odoo-openelis-connector && chmod +x setup.sh && ./setup.sh
-```
-
-That's it! The setup script will handle everything automatically.
-
-## Architecture
-
-The project follows a modular architecture with the following components:
-
-- **Odoo Initializer Addon**: Included as a zip file in the repository under `configs/odoo/addons/odoo_initializer.zip`
-- **OpenELIS Configuration**: Local configuration files for OpenELIS setup
-- **Docker Compose**: Containerized deployment setup
-- **Nginx Configuration**: Reverse proxy configuration
-
-## Prerequisites
-
-- Docker and Docker Compose
-
-## Project Structure
-
-```
-odoo-openelis-connector/
-├── configs/
-│   ├── nginx/           # Nginx configuration
-│   ├── odoo/            # Odoo configuration and addons
-│   │   ├── addons/      # Odoo addons (including odoo_initializer.zip)
-│   │   └── config/      # Odoo configuration files
-│   └── openelis/        # OpenELIS configuration
-├── docker-compose.yml   # Docker Compose configuration
-└── README.md           # This file
-```
-
-## Quick Start
-
-### 1. Clone the Repository
+## Start
 
 ```bash
-git clone <repository-url>
-cd odoo-openelis-connector
+docker compose up -d
 ```
 
-### 2. Run the Setup Script
+The first start takes a few minutes: Odoo creates the database `openelis` with the Invoicing app and the
+generic chart of accounts, and OpenELIS waits until Odoo is healthy. Then open:
 
-```bash
-./setup.sh
-```
+| Service | URL | User : password |
+|---|---|---|
+| OpenELIS | <https://localhost> | `admin` : `adminADMIN!` |
+| Odoo | <http://localhost:8069> | `admin` : `admin` |
 
-This script will:
-1. Check if Docker, Docker Compose, and `unzip` are available
-2. Extract the `odoo_initializer.zip` file to the addons directory
-3. Start all Docker services automatically
+Change the Odoo admin password (and `org.openelisglobal.odoo.password`) before anyone else can reach
+the server.
 
-### 3. Access the Services
+## Try it
 
-Once deployed, the services will be available at:
+1. In OpenELIS, **Order > Add Order**: enter a patient, add a **Whole Blood** sample with **ARV
+   resistance** and **CD4 Absolute count (mm3)**, and submit.
+2. In Odoo, **Invoicing > Customers > Invoices**: a draft invoice with the reference `OE-<lab number>`,
+   the patient as customer and two lines (57.00 and 42.00).
 
-- **Odoo**: http://localhost:8069 | admin : admin
-- **OpenELIS**: https://localhost | admin : adminADMIN!
+## How it is wired
 
-## Configuration
+| Where | What |
+|---|---|
+| `configs/properties/common.properties` | `org.openelisglobal.odoo.*`: enabled, Odoo address, database, user, password, and the language of the test names in the mapping file |
+| `configs/odoo/odoo-test-product-mapping.csv` | Billable tests: OpenELIS test name, invoice line label, quantity, unit price. Tests not listed are not billed |
+| `.env` | `ODOO_PORT`, `ODOO_DATABASE` (must match `org.openelisglobal.odoo.database`), `ODOO_DB_PASSWORD` |
 
-### Odoo Configuration
+OpenELIS logs in to Odoo and reads the mapping file once, at startup. After changing either, run
+`docker compose up -d --force-recreate oe.openelis.org`. If Odoo cannot be reached at startup, OpenELIS
+runs without invoicing until it is restarted. `https://localhost/api/OpenELIS-Global/health/odoo` shows the state.
 
-The Odoo configuration is located in `configs/odoo/` and includes:
-- Addon configurations (including the odoo_initializer.zip file)
-- Database initialization scripts
-- Custom module configurations
+## Known limits (OpenELIS 3.3.0)
 
-### OpenELIS Configuration
+- Invoice lines carry the label, quantity and price from the mapping file; they are not linked to an Odoo
+  product.
+- Invoice lines are posted to the account with id 1, which is **101000 Current Assets** on the generic
+  chart, instead of an income account. Fix the account on each invoice before confirming it until this is
+  corrected in OpenELIS.
 
-OpenELIS configuration files are in `configs/openelis/` and include:
-- Database configuration
-- Application properties
-- Logging configuration
+## Verified with this setup
 
-## Useful Docker Compose Commands
+On OpenELIS 3.3.0 and Odoo 17: OpenELIS connects at startup, an order with two mapped tests creates draft
+invoice `INV/2026/00001` (`OE-<lab number>`, total 99.00) and a customer for the patient.
 
-```bash
-# View logs
-docker-compose logs -f
-
-# Stop services
-docker-compose down
-
-# Restart services
-docker-compose restart
-
-# View service status
-docker-compose ps
-
-# Rebuild and start services
-docker-compose up -d --build
-```
-
-## Development
-
-### Adding New Odoo Addons
-
-To add new Odoo addons:
-
-1. Place the addon in the `configs/odoo/addons/` directory
-2. Update the Odoo configuration if needed
-3. Restart the Odoo service: `docker-compose restart odoo`
-
-### Updating the Odoo Initializer Addon
-
-To update the Odoo initializer addon:
-
-1. Replace the `configs/odoo/addons/odoo_initializer.zip` file with the new version
-2. Run the setup script: `./setup.sh` (this will restart all services)
-
-## Troubleshooting
-
-### Service Startup Issues
-
-If services fail to start:
-
-1. Check the logs: `docker-compose logs <service-name>`
-2. Ensure all required ports are available
-3. Verify Docker and Docker Compose are running
-
-### Configuration Issues
-
-If you encounter configuration problems:
-
-1. Check the configuration files in the `configs/` directory
-2. Verify file permissions and ownership
-3. Restart the affected services
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test the setup process
-5. Submit a pull request
-
-## License
-
-This project is licensed under the terms specified in the project documentation.
+Everything else (backups, upgrades, certificates, light stack) works as in openelis-docker: see its
+[README](https://github.com/DIGI-UW/openelis-docker#readme).
