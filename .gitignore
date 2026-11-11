@@ -1,27 +1,28 @@
-# IDE files
-.idea/
-**/.idea/
-*.iml
-.vscode/
-**/.vscode/
-*.swp
-*.swo
-*.sublime-*
+# Build and Release Folders
+bin-debug/
+bin-release/
+[Oo]bj/
+[Bb]in/
 
-# OS files
-.DS_Store
-**/.DS_Store
-Thumbs.db
+# Other files and folders
+.settings/
 
-# Logs
-*.log
-logs/
+# Executables
+*.swf
+*.air
+*.ipa
+*.apk
+*.DS_Store
 
-# Docker volumes
-docker-volumes/
+# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
+# should NOT be excluded as they contain compiler settings and other important
+# information for Eclipse / Flash Builder.
+*.idea
 
-# Odoo addon directories (extracted from zip)
-configs/odoo/addons/odoo_initializer/
-
-# Database data files
-configs/openelis/database/data/
+# local log folders
+configs/logs/
+configs/database/data/
+**/*checksum*.properties
+**/*checksums*.properties
+configs/properties/TotalSystemConfiguration.properties
+configs/properties/ChangedSystemConfiguration.properties
