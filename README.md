@@ -47,8 +47,17 @@ runs without invoicing until it is restarted. `https://localhost/api/OpenELIS-Gl
 - Invoice lines carry the label, quantity and price from the mapping file; they are not linked to an Odoo
   product.
 - Invoice lines are posted to the account with id 1, which is **101000 Current Assets** on the generic
-  chart, instead of an income account. Fix the account on each invoice before confirming it until this is
-  corrected in OpenELIS.
+  chart, instead of an income account. Fix the account on each invoice before confirming it.
+- A patient is matched to an Odoo customer by national ID, then by name, so two patients with the same
+  name share a customer. Country and state are sent as text, which Odoo refuses; the invoice then goes to
+  the lab's own company.
+
+All three are fixed in the next OpenELIS release (`develop` now,
+[OpenELIS-Global-2 #5037](https://github.com/DIGI-UW/OpenELIS-Global-2/pull/5037)): a line is linked to the
+Odoo product named like its mapped product and takes that product's income account and taxes; customers
+are matched only by national ID, or `OE-PATIENT-<id>` for a patient without one; country and state are
+looked up in Odoo. Create every mapped product in Odoo with the income account and taxes you want: a new
+product on the generic chart gets the default 15% sales tax, which then appears on the invoices.
 
 ## Verified with this setup
 
